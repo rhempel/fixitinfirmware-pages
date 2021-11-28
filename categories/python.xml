@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fix It In Firmware (Posts about python)</title><link>https://fixitinfirmware.com/</link><description></description><atom:link href="https://fixitinfirmware.com/categories/python.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:rhempel@fixitinfirmware.com"&gt;Ralph Hempel&lt;/a&gt; </copyright><lastBuildDate>Sun, 28 Nov 2021 11:18:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Installing Jupyter and More Tools</title><link>https://fixitinfirmware.com/posts/termux-install-jupyter-and-more/</link><dc:creator>Ralph Hempel</dc:creator><description>&lt;p&gt;Let's jump right into installing git and a few other helpful
+tools on our Samsung Tab 6S Lite Android Tablet.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-1" name="rest_code_55c4a621e7484b6c849f950fbb299246-1"&gt;&lt;/a&gt;$ pkg search git
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-2" name="rest_code_55c4a621e7484b6c849f950fbb299246-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-3" name="rest_code_55c4a621e7484b6c849f950fbb299246-3"&gt;&lt;/a&gt;Checking availability of current mirror: ok
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-4" name="rest_code_55c4a621e7484b6c849f950fbb299246-4"&gt;&lt;/a&gt;
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-5" name="rest_code_55c4a621e7484b6c849f950fbb299246-5"&gt;&lt;/a&gt;Sorting... Done
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-6" name="rest_code_55c4a621e7484b6c849f950fbb299246-6"&gt;&lt;/a&gt;Full Text Search... Done
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-7" name="rest_code_55c4a621e7484b6c849f950fbb299246-7"&gt;&lt;/a&gt;python/stable &lt;span class="m"&gt;2&lt;/span&gt;.33.0-1 aarch64
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-8" name="rest_code_55c4a621e7484b6c849f950fbb299246-8"&gt;&lt;/a&gt;  Fast, scaleable, distributed revision control system
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-9" name="rest_code_55c4a621e7484b6c849f950fbb299246-9"&gt;&lt;/a&gt;...
+&lt;/pre&gt;&lt;p&gt;And now we can install the packages we need (I have not included all the
+other package searches needed for this session).&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_600b561430d7433cae15781f88fd14e3-1" name="rest_code_600b561430d7433cae15781f88fd14e3-1"&gt;&lt;/a&gt;$ pkg install git build-essential
+&lt;/pre&gt;&lt;p&gt;Similarly, now that we have Python installed, we can add a few
+packages that we know will be needed to do useful work, like numpy
+and matplotlib.&lt;/p&gt;
+&lt;p&gt;We can also install sphinx and a few other utilities. If you run
+into trouble check out &lt;a class="reference external" href="https://wiki.termux.com/wiki/Python"&gt;Termux specific install hints for Python packages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-1" name="rest_code_55c4a621e7484b6c849f950fbb299246-1"&gt;&lt;/a&gt;$ pkg search git
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-2" name="rest_code_55c4a621e7484b6c849f950fbb299246-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-3" name="rest_code_55c4a621e7484b6c849f950fbb299246-3"&gt;&lt;/a&gt;Checking availability of current mirror: ok
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-4" name="rest_code_55c4a621e7484b6c849f950fbb299246-4"&gt;&lt;/a&gt;
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-5" name="rest_code_55c4a621e7484b6c849f950fbb299246-5"&gt;&lt;/a&gt;Sorting... Done
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-6" name="rest_code_55c4a621e7484b6c849f950fbb299246-6"&gt;&lt;/a&gt;Full Text Search... Done
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-7" name="rest_code_55c4a621e7484b6c849f950fbb299246-7"&gt;&lt;/a&gt;python/stable &lt;span class="m"&gt;2&lt;/span&gt;.33.0-1 aarch64
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-8" name="rest_code_55c4a621e7484b6c849f950fbb299246-8"&gt;&lt;/a&gt;  Fast, scaleable, distributed revision control system
+&lt;a id="rest_code_55c4a621e7484b6c849f950fbb299246-9" name="rest_code_55c4a621e7484b6c849f950fbb299246-9"&gt;&lt;/a&gt;...
+&lt;/pre&gt;&lt;p&gt;And now we can install the packages we need (I have not included all the
+other package searches needed for this session).&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_600b561430d7433cae15781f88fd14e3-1" name="rest_code_600b561430d7433cae15781f88fd14e3-1"&gt;&lt;/a&gt;$ pkg install git build-essential
+&lt;/pre&gt;&lt;p&gt;Similarly, now that we have Python installed, we can add a few
+packages that we know will be needed to do useful work, like numpy
+and matplotlib.&lt;/p&gt;
+&lt;p&gt;We can also install sphinx and a few other utilities. If you run
+into trouble check out &lt;a class="reference external" href="https://wiki.termux.com/wiki/Python"&gt;Termux specific install hints for Python packages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p&gt;And now we can install the packages we need (I have not included all the
+other package searches needed for this session).&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_600b561430d7433cae15781f88fd14e3-1" name="rest_code_600b561430d7433cae15781f88fd14e3-1"&gt;&lt;/a&gt;$ pkg install git build-essential
+&lt;/pre&gt;&lt;p&gt;Similarly, now that we have Python installed, we can add a few
+packages that we know will be needed to do useful work, like numpy
+and matplotlib.&lt;/p&gt;
+&lt;p&gt;We can also install sphinx and a few other utilities. If you run
+into trouble check out &lt;a class="reference external" href="https://wiki.termux.com/wiki/Python"&gt;Termux specific install hints for Python packages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_600b561430d7433cae15781f88fd14e3-1" name="rest_code_600b561430d7433cae15781f88fd14e3-1"&gt;&lt;/a&gt;$ pkg install git build-essential
+&lt;/pre&gt;&lt;p&gt;Similarly, now that we have Python installed, we can add a few
+packages that we know will be needed to do useful work, like numpy
+and matplotlib.&lt;/p&gt;
+&lt;p&gt;We can also install sphinx and a few other utilities. If you run
+into trouble check out &lt;a class="reference external" href="https://wiki.termux.com/wiki/Python"&gt;Termux specific install hints for Python packages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p&gt;Similarly, now that we have Python installed, we can add a few
+packages that we know will be needed to do useful work, like numpy
+and matplotlib.&lt;/p&gt;
+&lt;p&gt;We can also install sphinx and a few other utilities. If you run
+into trouble check out &lt;a class="reference external" href="https://wiki.termux.com/wiki/Python"&gt;Termux specific install hints for Python packages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;We can also install sphinx and a few other utilities. If you run
+into trouble check out &lt;a class="reference external" href="https://wiki.termux.com/wiki/Python"&gt;Termux specific install hints for Python packages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Subscribe to the pointless repository&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"&gt;&lt;/a&gt;$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"&gt;&lt;/a&gt;$ bash setup-pointless-repo.sh
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Now we can install (and search) for the Python packages using&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pkg instead of pip&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"&gt;&lt;/a&gt;$ pkg install numpy
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pillow has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"&gt;&lt;/a&gt;pkg install libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"&gt;&lt;/a&gt;pip install pillow
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pynacl has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"&gt;&lt;/a&gt;pkg install libsodium
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"&gt;&lt;/a&gt;pip install pynacl
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# matplotlib has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"&gt;&lt;/a&gt;pkg install freetype libjpeg-turbo libpng
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"&gt;&lt;/a&gt;pip install matplotlib
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# lxml has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"&gt;&lt;/a&gt;pkg install libxml2 libxslt
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"&gt;&lt;/a&gt;pip install lxml
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sphinx has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"&gt;&lt;/a&gt;pip install sphinx
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# nikola has some prerequisites - but they are mostly already there&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"&gt;&lt;/a&gt;pip install nikola
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"&gt;&lt;/a&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipython has some prerequisites&lt;/span&gt;
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"&gt;&lt;/a&gt;pkg install libzmq libcrypt clang
+&lt;a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"&gt;&lt;/a&gt;pip install pyzmq jupyter
+&lt;/pre&gt;&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p&gt;OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Start a Jupyter notebook session&lt;/span&gt;
+&lt;a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"&gt;&lt;/a&gt;jupyter notebook
+&lt;/pre&gt;&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p&gt;And you can paste in a &lt;a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html"&gt;Matplotlib sample plot&lt;/a&gt; to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>android</category><category>python</category><category>samsung</category><category>termux</category><guid>https://fixitinfirmware.com/posts/termux-install-jupyter-and-more/</guid><pubDate>Sat, 20 Feb 2021 17:00:00 GMT</pubDate></item><item><title>Installing Python on Termux</title><link>https://fixitinfirmware.com/posts/installing-python-on-termux/</link><dc:creator>Ralph Hempel</dc:creator><description>&lt;p&gt;As mentioned in a previous post, I'm really liking my Samsung Galaxy
+Tab S6 Lite. Now it's time to turn it into a device capable of
+lightweight programming - and the pleasant surprise is that it might
+be good enough for even more.&lt;/p&gt;
+&lt;p&gt;Let's get started with installing Python 3.x from the Termux package
+repository. To find packages matching Python in the name:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-1" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-1"&gt;&lt;/a&gt;$ pkg search python
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-2" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-3" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-3"&gt;&lt;/a&gt;Checking availability of current mirror: ok
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-4" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-4"&gt;&lt;/a&gt;
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-5" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-5"&gt;&lt;/a&gt;Sorting... Done
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-6" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-6"&gt;&lt;/a&gt;Full Text Search... Done
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-7" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-7"&gt;&lt;/a&gt;python/stable &lt;span class="m"&gt;3&lt;/span&gt;.9.7 aarch64
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-8" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-8"&gt;&lt;/a&gt;  Python &lt;span class="m"&gt;3&lt;/span&gt; programming language intended to &lt;span class="nb"&gt;enable&lt;/span&gt; clear programs
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-9" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-9"&gt;&lt;/a&gt;...
+&lt;/pre&gt;&lt;p&gt;That's good enough - we get Python 3.9.7 which is quite up to date. Note
+that Termux uses a rolling release model - that means you get the most
+up to date packages, but you can't mix and match or downgrade to older
+versions without a LOT of work.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1" name="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1"&gt;&lt;/a&gt;$ pkg install python
+&lt;/pre&gt;&lt;p&gt;This will take a few minutes, so be patient. Once that's done you can
+fire up Python and test out the console. Next we'll install iPython
+and some useful packages like numpy and matplotlib - maybe we can do
+a little more than lightweight work on this tablet!&lt;/p&gt;
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;Let's get started with installing Python 3.x from the Termux package
+repository. To find packages matching Python in the name:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-1" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-1"&gt;&lt;/a&gt;$ pkg search python
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-2" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-3" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-3"&gt;&lt;/a&gt;Checking availability of current mirror: ok
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-4" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-4"&gt;&lt;/a&gt;
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-5" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-5"&gt;&lt;/a&gt;Sorting... Done
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-6" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-6"&gt;&lt;/a&gt;Full Text Search... Done
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-7" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-7"&gt;&lt;/a&gt;python/stable &lt;span class="m"&gt;3&lt;/span&gt;.9.7 aarch64
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-8" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-8"&gt;&lt;/a&gt;  Python &lt;span class="m"&gt;3&lt;/span&gt; programming language intended to &lt;span class="nb"&gt;enable&lt;/span&gt; clear programs
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-9" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-9"&gt;&lt;/a&gt;...
+&lt;/pre&gt;&lt;p&gt;That's good enough - we get Python 3.9.7 which is quite up to date. Note
+that Termux uses a rolling release model - that means you get the most
+up to date packages, but you can't mix and match or downgrade to older
+versions without a LOT of work.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1" name="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1"&gt;&lt;/a&gt;$ pkg install python
+&lt;/pre&gt;&lt;p&gt;This will take a few minutes, so be patient. Once that's done you can
+fire up Python and test out the console. Next we'll install iPython
+and some useful packages like numpy and matplotlib - maybe we can do
+a little more than lightweight work on this tablet!&lt;/p&gt;
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-1" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-1"&gt;&lt;/a&gt;$ pkg search python
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-2" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-2"&gt;&lt;/a&gt;
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-3" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-3"&gt;&lt;/a&gt;Checking availability of current mirror: ok
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-4" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-4"&gt;&lt;/a&gt;
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-5" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-5"&gt;&lt;/a&gt;Sorting... Done
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-6" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-6"&gt;&lt;/a&gt;Full Text Search... Done
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-7" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-7"&gt;&lt;/a&gt;python/stable &lt;span class="m"&gt;3&lt;/span&gt;.9.7 aarch64
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-8" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-8"&gt;&lt;/a&gt;  Python &lt;span class="m"&gt;3&lt;/span&gt; programming language intended to &lt;span class="nb"&gt;enable&lt;/span&gt; clear programs
+&lt;a id="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-9" name="rest_code_ff0b5ddb3bc54540add873c0d56a87c0-9"&gt;&lt;/a&gt;...
+&lt;/pre&gt;&lt;p&gt;That's good enough - we get Python 3.9.7 which is quite up to date. Note
+that Termux uses a rolling release model - that means you get the most
+up to date packages, but you can't mix and match or downgrade to older
+versions without a LOT of work.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1" name="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1"&gt;&lt;/a&gt;$ pkg install python
+&lt;/pre&gt;&lt;p&gt;This will take a few minutes, so be patient. Once that's done you can
+fire up Python and test out the console. Next we'll install iPython
+and some useful packages like numpy and matplotlib - maybe we can do
+a little more than lightweight work on this tablet!&lt;/p&gt;
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p&gt;That's good enough - we get Python 3.9.7 which is quite up to date. Note
+that Termux uses a rolling release model - that means you get the most
+up to date packages, but you can't mix and match or downgrade to older
+versions without a LOT of work.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1" name="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1"&gt;&lt;/a&gt;$ pkg install python
+&lt;/pre&gt;&lt;p&gt;This will take a few minutes, so be patient. Once that's done you can
+fire up Python and test out the console. Next we'll install iPython
+and some useful packages like numpy and matplotlib - maybe we can do
+a little more than lightweight work on this tablet!&lt;/p&gt;
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1" name="rest_code_b1e0eddf851e4b4b8d15d03b6979a860-1"&gt;&lt;/a&gt;$ pkg install python
+&lt;/pre&gt;&lt;p&gt;This will take a few minutes, so be patient. Once that's done you can
+fire up Python and test out the console. Next we'll install iPython
+and some useful packages like numpy and matplotlib - maybe we can do
+a little more than lightweight work on this tablet!&lt;/p&gt;
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p&gt;This will take a few minutes, so be patient. Once that's done you can
+fire up Python and test out the console. Next we'll install iPython
+and some useful packages like numpy and matplotlib - maybe we can do
+a little more than lightweight work on this tablet!&lt;/p&gt;
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;in subsequent articles I'll add git, Python, matplotlib, and a few other
+packages. In fact, this website is generated on the Galaxy Tab S6 Lite
+using &lt;a class="reference external" href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; , a static website generator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>android</category><category>python</category><category>samsung</category><category>termux</category><guid>https://fixitinfirmware.com/posts/installing-python-on-termux/</guid><pubDate>Sat, 20 Feb 2021 17:00:00 GMT</pubDate></item><item><title>Installing vim and Setting Up Profile</title><link>https://fixitinfirmware.com/posts/termux-install-vim-and-set-up-profile/</link><dc:creator>Ralph Hempel</dc:creator><description>&lt;p&gt;Setting up vim and profile&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-1" name="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-1"&gt;&lt;/a&gt;$ pkg install x11-repo
+&lt;a id="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-2" name="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-2"&gt;&lt;/a&gt;$ pkg install vim-gtk
+&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-1" name="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-1"&gt;&lt;/a&gt;$ pkg install x11-repo
+&lt;a id="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-2" name="rest_code_5070191d8b5a465fa1fe0b2cec32bd1e-2"&gt;&lt;/a&gt;$ pkg install vim-gtk
+&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>android</category><category>python</category><category>samsung</category><category>termux</category><guid>https://fixitinfirmware.com/posts/termux-install-vim-and-set-up-profile/</guid><pubDate>Sat, 20 Feb 2021 17:00:00 GMT</pubDate></item></channel></rss>
