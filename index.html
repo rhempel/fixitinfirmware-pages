@@ -12,8 +12,8 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://fixitinfirmware.com/">
-<link rel="next" href="index-3.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/coding-standards-are-a-waste-of-time/" type="text/html">
+<link rel="next" href="index-2.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/mission-statements/" type="text/html">
 </head>
 <body>
 <!-- <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a> -->
@@ -70,220 +70,7 @@ style=" background-color: transparent><div class="container">
     
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/coding-standards-are-a-waste-of-time/" class="u-url">Coding Standards Are A Waste Of Time </a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Ralph Hempel
-            </span></p>
-            <p class="dateline">
-            <a href="posts/coding-standards-are-a-waste-of-time/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-11-27T12:00:00-05:00" itemprop="datePublished" title="2021-11-27">2021-11-27</time></a>
-            </p>
-        </div>
-    </header><div class="e-content entry-content">
-    <img alt="https://history.nasa.gov/SP-4223/p118.jpg" class="align-right" src="images/accent/GeneKranzAtConsole.thumbnail.jpg"><p>You've been working for hours to figure out why the system you are
-debugging only fails very occasionally. When you figure out that
-it takes about 25 days of continuous run time for the failure to
-occur, and it's happened at 4 different sites now, you get a
-spidey sense that it might be related to a timer. You pull out
-your phone and fire up Free-42 (because you like RPN calculators)
-and do the math for a 1 msec timer interval and figure out that
-a 32 bit unsigned int should be good for about 50 days ...</p>
-<p>When you find the place where someone did a bit of math with the
-clock using signed instead of unsigned values, you say "I wish
-that we had a coding standard to catch this". Said nobody. Ever.</p>
-<p>What you really needed was a developers guide for this project, a
-test-driven development mindset, and a review process that could
-work together to have a better chance at catching the problem.</p>
-<p>If you take a few minutes and Google "are coding standards useful"
-you will get many articles and blog posts promoting the same basic
-benfits:</p>
-<ul class="simple">
-<li><p>The code will be easy to read</p></li>
-<li><p>The code will be easy to understand</p></li>
-<li><p>The code will be easy to maintain</p></li>
-<li><p>The code will be easy to debug</p></li>
-</ul>
-<p>This is exactly the kind of fluff that management likes to read
-after yet another difficult project delivery. Sometimes consultants
-are brought in to review the development process and comment on the
-lack of a coding standard (among other things). If only we stuck
-to a coding standard our problems would go away.</p>
-<p>The thing is, a coding standard is the easiest document to write
-and to have meetings about. Everyonce has an opinion about how to
-write pretty code, and how varaibles and functions should be named,
-and whether to use camel-case or underlines to separate words.</p>
-<p>But is the coding standard really going to fix things?</p>
-<section id="but-coding-standards-make-reading-code-easier"><h2>But Coding Standards Make Reading Code Easier</h2>
-<p>To be fair, it <em>is</em> actually a little easier to read well-formed
-code, but that's something you can fix in a few minutes with any
-number of code formatting utilities. You can fix up most naming
-problems with a decent editor. But you can't make anything more
-complex than a toy example easier to understand, maintain, or
-debug just by having a coding standard.</p>
-<p>It feels good to write and read a nicely formatted block of code
-where the names all make sense, the flow is clear, and the comments
-explain the thinking behind the hard parts.</p>
-<p>Now multiply that by a few hundred files and pretty soon you are
-in the 20-50 kloc range - here's where the time you and your team
-discussed the number of spaces to indent a block or enforcing only
-one exit point per function was wasted. You would have been better
-off working on a project level design and developers guide.</p>
-</section><section id="but-coding-standards-make-understanding-code-easier"><h2>But Coding Standards Make Understanding Code Easier</h2>
-<p>Sure. For projects with a hundred or so lines of code. Do you
-really think that your coding standard is the one thing that is
-keeping new team members from understanding how your interrupt
-domain functions buffer data so the background task can process
-it when it's needed? Or how you guarantee that time critical
-hardware updates can run durung garbage collection cycles?</p>
-<p>It doesn't matter if the code is easy to read if the system is
-hard to understand. That's why there are Cliff's Notes for topics
-like The Great Gatsby and Differential Equations.</p>
-<p>It's very helpful to have a relatively short document to give you
-a detailed guide to the technical challenges the system is
-designed to solve as wells a developer's guide that explains
-how those challenges are solved.</p>
-<p>But wait. Isn't writing a Design Guide and Developer's Guide
-exactly what we are <em>not</em> supposed to do anymore? Doesn't Agile
-prefer working code over documentation? Shouldn't we avoid doing
-Big Up Front Design (BUFD)?</p>
-<p>Maybe, yes, and yes. I'm no fan of BUFD - unless it's for a
-relatively small piece of code where you know all the design
-constriants and requirements and you have good acceptance criteria
-and your team has written some variant of this code more than
-once or twice.</p>
-<p>For any complex project that's going to run for a few quarters
-or years there is no way to think ahead to all the problems or
-to find a process to eliminate risk. And that's why you and your
-team should spend your time writing Design Guides and Developer's
-Guides as you go. Take time in each sprint to update these
-guides with new knowledge for the project.</p>
-<p>For long-running and complex projects, your biggest enemy is
-not the lack of coding standards. It's staff turnover and adding
-more developers to the project. The loss of tribal knowledge
-and the friction of onboarding new developers is what's going
-to be the root cause of many issues that can be avoided if you
-spend time writing great guides.</p>
-</section><section id="but-coding-standards-make-maintanance-and-debugging-easier"><h2>But Coding Standards Make Maintanance and Debugging Easier</h2>
-<p>A coding standard might make the <em>mechanics</em> of maintaining
-code easier, but they sure don't help you find <em>where</em> to make
-the changes to add features.</p>
-<p>Debugging code is one of the hardest activities there is, and
-a coding standard is not going to help with that either. There
-are of course a few general rules that can be used to make it
-easier for the compiler to tell you about a potential bug. And
-there are static and dynamic code analysers that can point you
-to dangerous constructs.</p>
-<p>In my experience, this is completely backwards. And for full
-disclosure I was a strong advocate for compile time and code
-analysers to find potential bugs. I changed my mind when I
-discovered Test-Driven Development (TDD).</p>
-<p>Actually I discovered the TDD For Embedded Systems book by
-James Grenning back in 2011, but I didn't really dig in and
-<em>do</em> TDD until I refactored by umm_malloc project using TDD
-in about 2018.</p>
-<p>Then I wrote a non-trivial (2000 loc) feature extension for
-another project using TDD. It worked pretty much the first time we
-integrated it into the codebase running on our embedded target.
-When we reflected on how TDD improved our development process
-I realized that <em>I never had to use the debugger</em>. Ever. Not
-even once.</p>
-<p>Long story short, the bit about debugging being easier when
-you have a coding standard is simply untrue. Easier maintenance
-is also a myth - you still have to know where to change the
-code, or how to plug a new feature in.</p>
-</section><section id="what-can-we-do-to-improve-outcomes"><h2>What Can We Do To Improve Outcomes?</h2>
-<p>Debugging is
-much easier when you follow your design and developer's guides
-and you use TDD to avoid
-That was an incredible breakthrough for me, and it has changed
-how I think about writing complex system</p>
-<p><a class="reference external" href="https://www.amazon.com/Driven-Development-Embedded-Pragmatic-Programmers/dp/193435662X">https://www.amazon.com/Driven-Development-Embedded-Pragmatic-Programmers/dp/193435662X</a>
-<a class="reference external" href="https://www.cliffsnotes.com/">https://www.cliffsnotes.com/</a>
-<a class="reference external" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjW09jMw7n0AhXyxIsKHTtGCcEQFnoECB4QAQ&amp;url=https%3A%2F%2Frepository.tudelft.nl%2Fislandora%2Fobject%2Fuuid%3A646de5ba-eee8-4ec8-8bbc-2c188e1847ea%2Fdatastream%2FOBJ%2Fdownload&amp;usg=AOvVaw36uiug_akx2HfAXBP92tdi">https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjW09jMw7n0AhXyxIsKHTtGCcEQFnoECB4QAQ&amp;url=https%3A%2F%2Frepository.tudelft.nl%2Fislandora%2Fobject%2Fuuid%3A646de5ba-eee8-4ec8-8bbc-2c188e1847ea%2Fdatastream%2FOBJ%2Fdownload&amp;usg=AOvVaw36uiug_akx2HfAXBP92tdi</a>
-<a class="reference external" href="https://arxiv.org/pdf/2007.08978.pdf">https://arxiv.org/pdf/2007.08978.pdf</a>
-<a class="reference external" href="https://www.jstage.jst.go.jp/article/transinf/E98.D/7/E98.D_2014EDP7327/_article">https://www.jstage.jst.go.jp/article/transinf/E98.D/7/E98.D_2014EDP7327/_article</a></p>
-<p>Hands up for anyone who <em>knows</em> their company mission statement.</p>
-<p>In many organizations, the mission statement is laid out by top level
-leadership, sometimes with input from departments or individuals. It tends
-to be a general and somewhat fluffy set of words that could apply to
-just about any organization. And that makes most mission statements
-forgettable.</p>
-<p>But that doesn't mean your maintenance team should not have a mission
-statement! Your job together with your team is to come up with a
-statement that reflects how you want to be seen and heard within
-the organization moving forward.</p>
-<p>One step towards improving your team's visibility is to have a 30-60 minute
-workshop to identify your key responsibilities and accountabilities. Don't
-work on your misison statement yet - just keep that list up on a
-whiteboard and make sure that it accurately reflects the team's
-purpose. As you do your work, feel free to update the whiteboard by
-adding, consolidating, or removing items. Within 2-4 weeks the lists will
-be boiled down to a few items that will represent your team's "reason
-for being" - that's the core of your mission.</p>
-<p>Maintenance engineering can be extremely demanding because
-your work impacts not only future production but also every unit that
-has ever been produced and sold. You could be working on tasks
-as varied as reducing manufacturing cost, adding a new feature, or
-making a fix that can be applied in the field. In rare cases your team
-will have to make a call to stop production or even recall a product.</p>
-<p>How do those high level tasks fit into your company's mission statement?
-They probably don't - and that's why you and the team need to have one
-that feels authentic and relevant for you, while still supporting the
-overall company mission.</p>
-<p>Mission statements that are authentic are very hard to come by, so why
-not take inspiration from an existing statement and modify it (if needed)
-to be relevant for your team?</p>
-<p>Two of my personal favorites are:</p>
-<blockquote>
-<ul class="simple">
-<li><p>"Tough and competent"</p></li>
-<li><p>"Failure is not an option"</p></li>
-</ul>
-<p class="attribution">—Gene Kranz (Apollo Flight Director)</p>
-</blockquote>
-<p>Almost every engineer has at one time or another watched Apollo 13 and
-has reflected on their personal work. If you haven't watched it recently,
-please make some time to do so, or look up any documentary on the
-Apollo program. Maybe bring it up in your next team meeting and ask
-for input on an engineering heavy documentary that you can all watch.</p>
-<p>Then spend 30 minutes or so on a team reflection to gather input on
-what is the most relevant thing the team can do in the next 2-4 weeks
-that makes them feel proud of what they are doing.</p>
-</section><section id="but-we-did-fail-now-what"><h2>... but we DID fail - now what?</h2>
-<p>I just said that <em>Failure is not an option</em> is one of my guiding star
-statements. At LEGO we have a similar one - <em>Only the best is good enough</em>.</p>
-<p>As much as I admire these statements, they come with a downside. They
-may set up the organization to believe that failures will not happen, or
-support a culture of not releasing a product until it's perfect and
-complete.</p>
-<p>Of course these are relevant statements for space flight, where cost and
-quality are in step with each other. In consumer and commercial goods,
-you <em>will</em> have failures in design, production, software, and process - and
-they will almost always be coupled with schedule and cost pressure or
-incorrect assumptions.</p>
-<p>Your job as part of the maintenance team is to be prepared to address
-these failures, and to do so professionally. That means making sure that:</p>
-<blockquote>
-<ol class="arabic simple">
-<li><p>You value facts over guessing</p></li>
-<li><p>You fix the root cause and not the symptom</p></li>
-<li><p>You communicate clearly in a timely fashion</p></li>
-</ol>
-</blockquote>
-<p>This is where <em>Tough and Competent</em> comes in. You and the team need to
-be competent in gathering facts and getting to root cause. Then you
-need to be tough in challenging assumptions and reporting your findings
-and recommendations.</p>
-<p>What you and your team discover, how you solve the problem, and the
-way you communicate it up the chain will have a huge impact on your team's
-visibility and credibility. Never waste the opportunity.</p>
-<p>Managing engineering failures that get escalated to senior leadership
-is a real challenge, and I'll review personal stories of failure and
-success in future posts.</p>
-</section>
-</div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mission-statements/" class="u-url">Mission Statements</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mission-statements/" class="u-url">Mission Statements</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Ralph Hempel
@@ -376,10 +163,94 @@ is a real challenge, and I'll review personal stories of failure and
 success in future posts.</p>
 </section>
 </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/termux-install-jupyter-and-more/" class="u-url">Installing Jupyter and More Tools</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Ralph Hempel
+            </span></p>
+            <p class="dateline">
+            <a href="posts/termux-install-jupyter-and-more/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-02-20T12:00:00-05:00" itemprop="datePublished" title="2021-02-20">2021-02-20</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>Let's jump right into installing git and a few other helpful
+tools on our Samsung Tab 6S Lite Android Tablet.</p>
+<pre class="code bash"><a id="rest_code_55c4a621e7484b6c849f950fbb299246-1" name="rest_code_55c4a621e7484b6c849f950fbb299246-1"></a>$ pkg search git
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-2" name="rest_code_55c4a621e7484b6c849f950fbb299246-2"></a>
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-3" name="rest_code_55c4a621e7484b6c849f950fbb299246-3"></a>Checking availability of current mirror: ok
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-4" name="rest_code_55c4a621e7484b6c849f950fbb299246-4"></a>
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-5" name="rest_code_55c4a621e7484b6c849f950fbb299246-5"></a>Sorting... Done
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-6" name="rest_code_55c4a621e7484b6c849f950fbb299246-6"></a>Full Text Search... Done
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-7" name="rest_code_55c4a621e7484b6c849f950fbb299246-7"></a>python/stable <span class="m">2</span>.33.0-1 aarch64
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-8" name="rest_code_55c4a621e7484b6c849f950fbb299246-8"></a>  Fast, scaleable, distributed revision control system
+<a id="rest_code_55c4a621e7484b6c849f950fbb299246-9" name="rest_code_55c4a621e7484b6c849f950fbb299246-9"></a>...
+</pre>
+<p>And now we can install the packages we need (I have not included all the
+other package searches needed for this session).</p>
+<pre class="code bash"><a id="rest_code_600b561430d7433cae15781f88fd14e3-1" name="rest_code_600b561430d7433cae15781f88fd14e3-1"></a>$ pkg install git build-essential
+</pre>
+<p>Similarly, now that we have Python installed, we can add a few
+packages that we know will be needed to do useful work, like numpy
+and matplotlib.</p>
+<p>We can also install sphinx and a few other utilities. If you run
+into trouble check out <a class="reference external" href="https://wiki.termux.com/wiki/Python">Termux specific install hints for Python packages</a>.</p>
+<p>In some cases, the packages need to be built from
+source on the tablet - but this takes a lot of time, so
+it might be better to take advantage of the "pointless"
+install method that gives us pre-built binaries:</p>
+<pre class="code bash"><a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-1"></a><span class="c1"># Subscribe to the pointless repository</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-2"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-3"></a>$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-4"></a>$ bash setup-pointless-repo.sh
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-5"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-6"></a><span class="c1"># Now we can install (and search) for the Python packages using</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-7"></a><span class="c1"># pkg instead of pip</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-8"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-9"></a>$ pkg install numpy
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-10"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-11"></a><span class="c1"># pillow has some prerequisites</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-12"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-13"></a>pkg install libjpeg-turbo libpng
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-14"></a>pip install pillow
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-15"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-16"></a><span class="c1"># pynacl has some prerequisites</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-17"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-18"></a>pkg install libsodium
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-19"></a>pip install pynacl
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-20"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-21"></a><span class="c1"># matplotlib has some prerequisites</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-22"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-23"></a>pkg install freetype libjpeg-turbo libpng
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-24"></a>pip install matplotlib
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-25"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-26"></a><span class="c1"># lxml has some prerequisites</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-27"></a>pkg install libxml2 libxslt
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-28"></a>pip install lxml
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-29"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-30"></a><span class="c1"># sphinx has some prerequisites - but they are mostly already there</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-31"></a>pip install sphinx
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-32"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-33"></a><span class="c1"># nikola has some prerequisites - but they are mostly already there</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-34"></a>pip install nikola
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-35"></a>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-36"></a><span class="c1"># ipython has some prerequisites</span>
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-37"></a>pkg install libzmq libcrypt clang
+<a id="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38" name="rest_code_86b0eec92dfa4651a7fe337350e4ee04-38"></a>pip install pyzmq jupyter
+</pre>
+<p>OK, now we have a pretty powerful piece of machinery at our fingertips. We
+can start an iPython notebook like this:</p>
+<pre class="code bash"><a id="rest_code_9b9796d5776044c08829a13308ec36cb-1" name="rest_code_9b9796d5776044c08829a13308ec36cb-1"></a><span class="c1"># Start a Jupyter notebook session</span>
+<a id="rest_code_9b9796d5776044c08829a13308ec36cb-2" name="rest_code_9b9796d5776044c08829a13308ec36cb-2"></a>jupyter notebook
+</pre>
+<p>And you can paste in a <a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html">Matplotlib sample plot</a> to make sure it's working.
+I think we can call it a day and now we are ready to have some serious fun
+with an Android tablet!</p>
+    </div>
     </article>
 </div>
         <ul class="pager postindexpager clearfix">
-<li class="next"><a href="index-3.html" rel="next">Older posts</a></li>
+<li class="next"><a href="index-2.html" rel="next">Older posts</a></li>
         </ul>
 <!--End of body content--><footer class="container px-3 py-2" id="footer">
             Contents © 2021         <a href="mailto:rhempel@fixitinfirmware.com">Ralph Hempel</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
